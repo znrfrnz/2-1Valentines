@@ -15,7 +15,7 @@ const colors: Record<string, string> = {
   green: "#A3E635",
   yellow: "#FDE047",
   white: "#FFFFFF",
-  blue: "#7EC8E3",
+  blue: "#7DD3FC",
 };
 
 export function Sparkle({

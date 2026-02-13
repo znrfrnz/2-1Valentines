@@ -16,7 +16,7 @@ export function SpotifyMiniPlayer({
   const embedUrl = `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0`;
 
   return (
-    <div className="mt-2 -mx-4 -mb-4 rounded-b-sm overflow-hidden">
+    <div className="mt-2 rounded-xl overflow-hidden">
       <iframe
         src={embedUrl}
         width="100%"

@@ -26,7 +26,11 @@ export function WallView({
     <div className="min-h-screen w-full p-4 md:p-8 pb-24 overflow-x-hidden relative">
       {/* Background Decorations */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <Sparkle color="pink" size={60} className="top-10 left-10 opacity-50" />
+        <Sparkle
+          color="white"
+          size={60}
+          className="top-10 left-10 opacity-50"
+        />
         <Sparkle
           color="blue"
           size={40}
@@ -38,7 +42,7 @@ export function WallView({
           className="bottom-40 left-20 opacity-50"
         />
         <Sparkle
-          color="green"
+          color="blue"
           size={30}
           className="bottom-10 right-10 opacity-50"
         />

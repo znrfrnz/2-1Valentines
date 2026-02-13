@@ -6,6 +6,7 @@ import { PostItNote } from "./PostItNote";
 import { Sparkle } from "./Sparkle";
 import { Heart, ArrowRight } from "lucide-react";
 import { PostItData } from "@/lib/types";
+import { Ka21nanLogo } from "./Ka21nanLogo";
 
 interface LandingPageProps {
   onViewWall: () => void;
@@ -58,9 +59,11 @@ export function LandingPage({
         />
 
         {/* Decorative Circles */}
-        <div className="absolute top-[15%] left-[30%] w-4 h-4 rounded-full bg-pink-300/50" />
-        <div className="absolute bottom-[30%] right-[25%] w-6 h-6 rounded-full bg-yellow-300/50" />
-        <div className="absolute top-[60%] left-[15%] w-3 h-3 rounded-full bg-blue-300/50" />
+        <div className="absolute top-[15%] left-[30%] w-4 h-4 rounded-full bg-sky-300/60" />
+        <div className="absolute bottom-[30%] right-[25%] w-6 h-6 rounded-full bg-white/40" />
+        <div className="absolute top-[60%] left-[15%] w-3 h-3 rounded-full bg-red-400/50" />
+        <div className="absolute top-[75%] right-[12%] w-5 h-5 rounded-full bg-sky-200/50" />
+        <div className="absolute top-[30%] right-[8%] w-3 h-3 rounded-full bg-rose-300/60" />
       </div>
 
       {/* Background Message Strips */}
@@ -110,7 +113,7 @@ export function LandingPage({
         {/* Main Title with 3D Effect */}
         <div className="relative mb-6">
           <motion.h1
-            className="font-display text-6xl md:text-8xl text-[#FF9EAA] text-outline-3d tracking-wide relative z-10"
+            className="font-display text-6xl md:text-8xl text-white text-outline-3d tracking-wide relative z-10"
             animate={{ rotate: [-2, 2, -2] }}
             transition={{
               duration: 4,
@@ -134,11 +137,11 @@ export function LandingPage({
           </motion.h1>
 
           {/* Decorative elements around title */}
-          <Sparkle color="yellow" size={40} className="-top-8 -right-8 z-30" />
-          <Sparkle color="green" size={30} className="bottom-0 -left-8 z-30" />
+          <Sparkle color="blue" size={40} className="-top-8 -right-8 z-30" />
+          <Sparkle color="yellow" size={30} className="bottom-0 -left-8 z-30" />
         </div>
 
-        <p className="font-handwriting text-2xl md:text-3xl text-gray-700 mb-12 max-w-md mx-auto bg-white/60 backdrop-blur-sm p-4 rounded-xl border border-white/50 shadow-sm rotate-1">
+        <p className="font-handwriting text-2xl md:text-3xl text-white mb-12 max-w-md mx-auto bg-white/20 backdrop-blur-sm p-4 rounded-xl border border-white/30 shadow-sm rotate-1 drop-shadow-md">
           Send a sweet note to someone special! <br />
         </p>
 
@@ -154,12 +157,17 @@ export function LandingPage({
 
           <button
             onClick={onViewWall}
-            className="bg-white/80 hover:bg-white text-blue-500 border-2 border-blue-300 px-8 py-3 rounded-full font-display text-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex items-center gap-2"
+            className="bg-white/80 hover:bg-white text-pink-500 border-2 border-pink-300 px-8 py-3 rounded-full font-display text-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex items-center gap-2"
           >
             View Wall <ArrowRight size={20} />
           </button>
         </div>
       </motion.div>
+
+      {/* Ka21nan Logo above footer */}
+      <div className="absolute bottom-14 z-20">
+        <Ka21nanLogo />
+      </div>
 
       {/* Footer */}
       <div className="absolute bottom-4 text-white/80 font-bold text-sm z-20 drop-shadow-md">

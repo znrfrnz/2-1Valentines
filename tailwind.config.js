@@ -13,12 +13,14 @@ module.exports = {
         body: ['"Fredoka"', "sans-serif"],
       },
       colors: {
-        "val-blue-start": "#7EC8E3",
-        "val-blue-end": "#B8E4F0",
+        "val-pink-start": "#E84393",
+        "val-pink-mid": "#F472B6",
+        "val-pink-end": "#F9A8D4",
         "val-pink": "#FF9EAA",
-        "val-pink-dark": "#FF748B",
-        "val-green": "#A3E635",
-        "val-yellow": "#FDE047",
+        "val-pink-dark": "#D63384",
+        "val-blue": "#7DD3FC",
+        "val-yellow": "#FFD54F",
+        "val-coral": "#FF6B6B",
       },
       keyframes: {
         twinkle: {

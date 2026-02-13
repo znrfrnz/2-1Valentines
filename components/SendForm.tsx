@@ -35,30 +35,38 @@ interface SendFormProps {
 const COLOR_OPTIONS: {
   value: "pink" | "yellow" | "lavender";
   label: string;
-  bg: string;
-  border: string;
-  ring: string;
+  cardClass: string;
+  headerBg: string;
+  ringColor: string;
+  bubbleColor: string;
+  checkColor: string;
 }[] = [
   {
     value: "pink",
     label: "Pink",
-    bg: "bg-pink-200",
-    border: "border-pink-400",
-    ring: "ring-pink-300",
+    cardClass: "postit-pink",
+    headerBg: "bg-gradient-to-r from-pink-400 to-rose-400",
+    ringColor: "ring-pink-400",
+    bubbleColor: "bg-pink-300",
+    checkColor: "text-pink-600",
   },
   {
     value: "yellow",
     label: "Yellow",
-    bg: "bg-yellow-200",
-    border: "border-yellow-400",
-    ring: "ring-yellow-300",
+    cardClass: "postit-yellow",
+    headerBg: "bg-gradient-to-r from-amber-300 to-yellow-300",
+    ringColor: "ring-amber-400",
+    bubbleColor: "bg-amber-200",
+    checkColor: "text-amber-600",
   },
   {
     value: "lavender",
     label: "Lavender",
-    bg: "bg-purple-200",
-    border: "border-purple-400",
-    ring: "ring-purple-300",
+    cardClass: "postit-lavender",
+    headerBg: "bg-gradient-to-r from-purple-400 to-violet-400",
+    ringColor: "ring-purple-400",
+    bubbleColor: "bg-purple-200",
+    checkColor: "text-purple-600",
   },
 ];
 
@@ -252,25 +260,65 @@ export function SendForm({
                     <Palette size={32} className="text-purple-500" />
                   </div>
 
-                  <div className="flex gap-4 justify-center">
-                    {COLOR_OPTIONS.map((opt) => (
-                      <button
-                        key={opt.value}
-                        type="button"
-                        onClick={() =>
-                          setFormData({ ...formData, color: opt.value })
-                        }
-                        className={`w-16 h-16 rounded-2xl transition-all ${opt.bg} border-2 ${
-                          formData.color === opt.value
-                            ? `${opt.border} ring-4 ${opt.ring} scale-110`
-                            : "border-transparent hover:scale-105"
-                        } shadow-md flex items-center justify-center`}
-                      >
-                        {formData.color === opt.value && (
-                          <Check size={24} className="text-gray-700" />
-                        )}
-                      </button>
-                    ))}
+                  <div className="flex gap-5 justify-center">
+                    {COLOR_OPTIONS.map((opt) => {
+                      const isSelected = formData.color === opt.value;
+                      return (
+                        <button
+                          key={opt.value}
+                          type="button"
+                          onClick={() =>
+                            setFormData({ ...formData, color: opt.value })
+                          }
+                          className={`relative w-20 h-24 rounded-2xl overflow-hidden transition-all transform-gpu ${opt.cardClass} ${
+                            isSelected
+                              ? `ring-4 ${opt.ringColor} scale-110`
+                              : "hover:scale-105 opacity-75 hover:opacity-100"
+                          }`}
+                        >
+                          {/* Mini header strip */}
+                          <div
+                            className={`${opt.headerBg} h-5 flex items-center justify-center`}
+                          >
+                            <div className="flex gap-1">
+                              <div className="w-1.5 h-1.5 rounded-full bg-white/60" />
+                              <div className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                              <div className="w-1.5 h-1.5 rounded-full bg-white/25" />
+                            </div>
+                          </div>
+                          {/* Glossy overlay */}
+                          <div
+                            className="absolute inset-0 pointer-events-none"
+                            style={{
+                              background:
+                                "linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.05) 40%, transparent 60%)",
+                            }}
+                          />
+                          {/* Bubble accents */}
+                          <div
+                            className={`absolute w-8 h-8 rounded-full ${opt.bubbleColor} opacity-15 -bottom-1 -right-1`}
+                          />
+                          <div
+                            className={`absolute w-5 h-5 rounded-full ${opt.bubbleColor} opacity-10 top-7 left-1`}
+                          />
+                          {/* Check / Label */}
+                          <div className="flex flex-col items-center justify-center h-[calc(100%-1.25rem)] gap-1">
+                            {isSelected ? (
+                              <Check
+                                size={22}
+                                className={opt.checkColor}
+                                strokeWidth={3}
+                              />
+                            ) : null}
+                            <span
+                              className={`text-[10px] font-bold uppercase tracking-wide ${isSelected ? opt.checkColor : "text-gray-400"}`}
+                            >
+                              {opt.label}
+                            </span>
+                          </div>
+                        </button>
+                      );
+                    })}
                   </div>
 
                   <p className="text-sm text-gray-500 text-center">
