@@ -1,11 +1,13 @@
 // ─── Database / Supabase Types ───────────────────────────────────────────────
 
+export type NoteColor = "pink" | "yellow" | "lavender" | "blue" | "green" | "red";
+
 export interface Message {
   id: string;
   message: string;
   from_name: string;
   to_name: string | null;
-  color: "pink" | "yellow" | "lavender";
+  color: NoteColor;
   spotify_track_id: string | null;
   spotify_track_name: string | null;
   spotify_artist_name: string | null;
@@ -18,7 +20,7 @@ export interface MessageInsert {
   message: string;
   from_name: string;
   to_name?: string | null;
-  color: "pink" | "yellow" | "lavender";
+  color: NoteColor;
   spotify_track_id?: string | null;
   spotify_track_name?: string | null;
   spotify_artist_name?: string | null;
@@ -76,7 +78,7 @@ export interface PostItData {
   message: string;
   from: string;
   to?: string | null;
-  color: "pink" | "yellow" | "lavender";
+  color: NoteColor;
   spotifyTrackId?: string | null;
   spotifyTrackName?: string | null;
   spotifyArtistName?: string | null;

@@ -1,4 +1,5 @@
 import { createBrowserClient } from "@supabase/ssr";
+import { NoteColor } from "./types";
 
 export function createClient() {
   return createBrowserClient(
@@ -16,7 +17,7 @@ export type Message = {
   spotify_track_name: string | null;
   spotify_artist_name: string | null;
   spotify_album_image: string | null;
-  color: "pink" | "yellow" | "lavender";
+  color: NoteColor;
   visitor_id: string | null;
   created_at: string;
 };

@@ -5,7 +5,12 @@ import Image from "next/image";
 
 export function Ka21nanLogo() {
   return (
-    <div className="flex flex-col items-center select-none">
+    <a
+      href="https://www.facebook.com/ka21nanseries"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex flex-col items-center select-none hover:scale-105 transition-transform"
+    >
       <Image
         src="/Ka21nanLogo.png"
         alt="ka21nan series"
@@ -14,6 +19,6 @@ export function Ka21nanLogo() {
         className="drop-shadow-md"
         priority={false}
       />
-    </div>
+    </a>
   );
 }

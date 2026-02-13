@@ -107,10 +107,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const validColors = ["pink", "yellow", "lavender"];
+    const validColors = ["pink", "yellow", "lavender", "blue", "green", "red"];
     if (!color || !validColors.includes(color)) {
       return NextResponse.json(
-        { error: "color must be one of: pink, yellow, lavender" },
+        { error: "color must be one of: pink, yellow, lavender, blue, green, red" },
         { status: 400 },
       );
     }

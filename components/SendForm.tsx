@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Sparkle } from "./Sparkle";
 import { SpotifySearch, SelectedTrack } from "./SpotifySearch";
+import { NoteColor } from "@/lib/types";
 
 interface SendFormProps {
   onCancel: () => void;
@@ -20,7 +21,7 @@ interface SendFormProps {
     to: string;
     from: string;
     message: string;
-    color: "pink" | "yellow" | "lavender";
+    color: NoteColor;
     spotifyTrackId?: string | null;
     spotifyTrackName?: string | null;
     spotifyArtistName?: string | null;
@@ -33,7 +34,7 @@ interface SendFormProps {
 }
 
 const COLOR_OPTIONS: {
-  value: "pink" | "yellow" | "lavender";
+  value: NoteColor;
   label: string;
   cardClass: string;
   headerBg: string;
@@ -68,6 +69,33 @@ const COLOR_OPTIONS: {
     bubbleColor: "bg-purple-200",
     checkColor: "text-purple-600",
   },
+  {
+    value: "blue",
+    label: "Blue",
+    cardClass: "postit-blue",
+    headerBg: "bg-gradient-to-r from-sky-400 to-blue-400",
+    ringColor: "ring-sky-400",
+    bubbleColor: "bg-sky-200",
+    checkColor: "text-sky-600",
+  },
+  {
+    value: "green",
+    label: "Green",
+    cardClass: "postit-green",
+    headerBg: "bg-gradient-to-r from-green-400 to-emerald-400",
+    ringColor: "ring-green-400",
+    bubbleColor: "bg-green-200",
+    checkColor: "text-green-600",
+  },
+  {
+    value: "red",
+    label: "Red",
+    cardClass: "postit-red",
+    headerBg: "bg-gradient-to-r from-red-400 to-rose-500",
+    ringColor: "ring-red-400",
+    bubbleColor: "bg-red-200",
+    checkColor: "text-red-600",
+  },
 ];
 
 export function SendForm({
@@ -81,7 +109,7 @@ export function SendForm({
     to: "",
     from: savedNickname ?? "",
     message: "",
-    color: "pink" as "pink" | "yellow" | "lavender",
+    color: "pink" as NoteColor,
   });
   const [selectedTrack, setSelectedTrack] = useState<SelectedTrack | null>(
     null,
@@ -260,7 +288,7 @@ export function SendForm({
                     <Palette size={32} className="text-purple-500" />
                   </div>
 
-                  <div className="flex gap-5 justify-center">
+                  <div className="grid grid-cols-3 gap-4 justify-center">
                     {COLOR_OPTIONS.map((opt) => {
                       const isSelected = formData.color === opt.value;
                       return (

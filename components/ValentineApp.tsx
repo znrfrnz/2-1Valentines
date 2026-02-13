@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { LandingPage } from "./LandingPage";
 import { WallView } from "./WallView";
 import { SendForm } from "./SendForm";
-import { PostItData, Message, messageToPostIt } from "@/lib/types";
+import { PostItData, Message, messageToPostIt, NoteColor } from "@/lib/types";
 import { createClient } from "@/lib/supabase";
 
 type View = "landing" | "wall";
@@ -160,7 +160,7 @@ export function ValentineApp({
       to: string;
       from: string;
       message: string;
-      color: "pink" | "yellow" | "lavender";
+      color: NoteColor;
       spotifyTrackId?: string | null;
       spotifyTrackName?: string | null;
       spotifyArtistName?: string | null;
