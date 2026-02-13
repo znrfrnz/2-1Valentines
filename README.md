@@ -2,7 +2,8 @@
 
 Send messages anonymously to someone :)
 
-Made using
+Made using:
+
 ![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)
 ![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E?logo=supabase)
 ![Spotify](https://img.shields.io/badge/Spotify-API-1DB954?logo=spotify)
