@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "2-1's Valentine's Wall",
+  title: "BSIT 2-1's Valentine's Wall",
   description: "Send a sweet note to someone special",
   icons: {
     icon: "/Ka21nanLogo.png",
