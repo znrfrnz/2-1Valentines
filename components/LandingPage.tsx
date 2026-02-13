@@ -6,6 +6,48 @@ import { motion } from "framer-motion";
 import { PostItNote } from "./PostItNote";
 import { Sparkle } from "./Sparkle";
 import { Heart, ArrowRight } from "lucide-react";
+
+// Floating heart component for title decoration
+function FloatingHeart({ 
+  delay = 0, 
+  x = 0, 
+  y = 0, 
+  size = 20,
+  color = "#FF6B9D"
+}: { 
+  delay?: number; 
+  x?: number; 
+  y?: number; 
+  size?: number;
+  color?: string;
+}) {
+  return (
+    <motion.div
+      className="absolute pointer-events-none"
+      style={{ left: x, top: y }}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ 
+        opacity: [0, 1, 1, 1],
+        scale: [0, 1.2, 1, 1.1, 1],
+        y: [0, -5, 0, -3, 0],
+      }}
+      transition={{
+        delay: delay + 0.8,
+        duration: 2,
+        repeat: Infinity,
+        repeatDelay: 0.5,
+        ease: "easeInOut",
+      }}
+    >
+      <Heart 
+        size={size} 
+        fill={color}
+        color={color}
+        className="drop-shadow-md"
+      />
+    </motion.div>
+  );
+}
 import { PostItData } from "@/lib/types";
 import { Ka21nanLogo } from "./Ka21nanLogo";
 
@@ -113,13 +155,35 @@ export function LandingPage({
       >
         {/* Main Title with 3D Effect and BOOM Entrance Animation */}
         <div className="relative mb-6">
+          {/* Floating Hearts integrated with title */}
+          <FloatingHeart x={-30} y={10} size={18} delay={0} color="#FF6B9D" />
+          <FloatingHeart x={-15} y={50} size={14} delay={0.3} color="#FF9EAA" />
+          <FloatingHeart x={200} y={5} size={20} delay={0.5} color="#FF6B9D" />
+          <FloatingHeart x={220} y={60} size={12} delay={0.2} color="#F472B6" />
+          <FloatingHeart x={100} y={-15} size={16} delay={0.7} color="#FF9EAA" />
+          <FloatingHeart x={180} y={110} size={14} delay={0.4} color="#FF6B9D" />
+          <FloatingHeart x={-20} y={100} size={16} delay={0.6} color="#F472B6" />
+
           <motion.h1
             className="font-display text-5xl md:text-7xl text-white text-outline-3d tracking-wide relative z-10"
             initial={{ opacity: 0, scale: 3, y: -50 }}
-            animate={{ opacity: 1, scale: 1, y: 0, rotate: [-2, 2, -2] }}
+            animate={{ 
+              opacity: 1, 
+              scale: [1, 1, 1.02, 1, 1.02, 1], 
+              y: 0, 
+              rotate: [-2, 2, -2] 
+            }}
             transition={{
               opacity: { duration: 0.4 },
-              scale: { duration: 0.6, type: "spring", bounce: 0.3 },
+              scale: { 
+                duration: 0.6, 
+                type: "spring", 
+                bounce: 0.3,
+                // After initial animation, start pulsating
+                times: [0, 0.5, 0.6, 0.7, 0.8, 1],
+                repeat: Infinity,
+                repeatDelay: 0.5,
+              },
               y: { duration: 0.6, type: "spring", bounce: 0.4 },
               rotate: {
                 duration: 4,
@@ -132,12 +196,24 @@ export function LandingPage({
             2-1&apos;s
           </motion.h1>
           <motion.h1
-            className="font-display text-5xl md:text-7xl text-white text-outline-3d tracking-wide -mt-2 md:-mt-4 relative z-20"
+            className="font-display text-5xl md:text-7xl text-white text-outline-3d tracking-wide -mt-2 md:-mt-4 relative z-20 flex items-center justify-center gap-1"
             initial={{ opacity: 0, scale: 3 }}
-            animate={{ opacity: 1, scale: 1, rotate: [2, -2, 2] }}
+            animate={{ 
+              opacity: 1, 
+              scale: [1, 1, 1.02, 1, 1.02, 1], 
+              rotate: [2, -2, 2] 
+            }}
             transition={{
               opacity: { duration: 0.4, delay: 0.2 },
-              scale: { duration: 0.6, type: "spring", bounce: 0.3, delay: 0.2 },
+              scale: { 
+                duration: 0.6, 
+                type: "spring", 
+                bounce: 0.3, 
+                delay: 0.2,
+                times: [0, 0.5, 0.6, 0.7, 0.8, 1],
+                repeat: Infinity,
+                repeatDelay: 0.5,
+              },
               rotate: {
                 duration: 4,
                 repeat: Infinity,
@@ -146,15 +222,43 @@ export function LandingPage({
               },
             }}
           >
-            Valentine&apos;s
+            V
+            <motion.span
+              className="inline-block"
+              animate={{ 
+                scale: [1, 1.3, 1],
+              }}
+              transition={{
+                duration: 1.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1.5,
+              }}
+            >
+              <Heart className="inline w-8 h-8 md:w-12 md:h-12 fill-pink-400 text-pink-400 drop-shadow-lg -mx-1" />
+            </motion.span>
+            lentine&apos;s
           </motion.h1>
           <motion.h1
             className="font-display text-5xl md:text-7xl text-white text-outline-3d tracking-wide -mt-2 md:-mt-4 relative z-30"
             initial={{ opacity: 0, scale: 3, y: 50 }}
-            animate={{ opacity: 1, scale: 1, y: 0, rotate: [-1, 1, -1] }}
+            animate={{ 
+              opacity: 1, 
+              scale: [1, 1, 1.02, 1, 1.02, 1], 
+              y: 0, 
+              rotate: [-1, 1, -1] 
+            }}
             transition={{
               opacity: { duration: 0.4, delay: 0.4 },
-              scale: { duration: 0.6, type: "spring", bounce: 0.3, delay: 0.4 },
+              scale: { 
+                duration: 0.6, 
+                type: "spring", 
+                bounce: 0.3, 
+                delay: 0.4,
+                times: [0, 0.5, 0.6, 0.7, 0.8, 1],
+                repeat: Infinity,
+                repeatDelay: 0.5,
+              },
               y: { duration: 0.6, type: "spring", bounce: 0.4, delay: 0.4 },
               rotate: {
                 duration: 4,
