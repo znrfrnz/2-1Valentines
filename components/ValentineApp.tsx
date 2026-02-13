@@ -132,8 +132,7 @@ export function ValentineApp({
         });
 
         if (res.ok) {
-          // local state
-          setMessages((prev) => prev.filter((m) => m.id !== messageId));
+          // Removal happens via Supabase real-time DELETE subscription
         } else {
           const data = await res.json().catch(() => ({}));
           const errorMsg =
@@ -188,14 +187,12 @@ export function ValentineApp({
 
         if (res.ok) {
           const responseData = await res.json();
-          const savedMessage = responseData.message;
 
           if (responseData.rateLimit) {
             setRateLimitRemaining(responseData.rateLimit.remaining);
           }
 
-          const newPost = messageToPostIt(savedMessage as Message, visitorId);
-          setMessages((prev) => [newPost, ...prev]);
+          // Note appears via Supabase real-time subscription
         } else if (res.status === 429) {
           const errorData = await res.json().catch(() => ({}));
           alert(
