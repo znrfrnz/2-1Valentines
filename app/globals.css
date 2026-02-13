@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Lilita+One&family=Fredoka:wght@300;400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg-blue-start: #7ec8e3;
+    --bg-blue-end: #b8e4f0;
+    --accent-pink: #ff9eaa;
+    --accent-pink-dark: #ff748b;
+    --accent-green: #a3e635;
+    --accent-yellow: #fde047;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Fredoka", sans-serif;
+    background: linear-gradient(
+        180deg,
+        var(--bg-blue-start) 0%,
+        var(--bg-blue-end) 100%
+    );
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: #333;
+}
+
+/* Halftone Pattern Overlay */
+.halftone-bg {
+    background-color: transparent;
+    background-image: radial-gradient(
+        rgba(255, 255, 255, 0.3) 2px,
+        transparent 2.5px
+    );
+    background-size: 20px 20px;
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* 3D Text Effect for Headings */
+.text-outline-3d {
+    -webkit-text-stroke: 2px #333;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+    paint-order: stroke fill;
+}
+
+.text-outline-white {
+    -webkit-text-stroke: 4px white;
+    paint-order: stroke fill;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* Glossy 3D Button */
+.glossy-btn {
+    background: linear-gradient(
+        180deg,
+        #bef264 0%,
+        #86efac 50%,
+        #4ade80 51%,
+        #22c55e 100%
+    );
+    border: 2px solid #14532d;
+    box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.5),
+        0 4px 0 #14532d,
+        0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.1s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.glossy-btn:active {
+    transform: translateY(4px);
+    box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.5),
+        0 0 0 #14532d,
+        inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.glossy-btn-pink {
+    background: linear-gradient(
+        180deg,
+        #fbcfe8 0%,
+        #f9a8d4 50%,
+        #f472b6 51%,
+        #ec4899 100%
+    );
+    border: 2px solid #831843;
+    box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.5),
+        0 4px 0 #831843,
+        0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.glossy-btn-pink:active {
+    transform: translateY(4px);
+    box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.5),
+        0 0 0 #831843,
+        inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Paper Strip Style */
+.paper-strip {
+    background: #fff;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+/* Font utility classes */
+.font-display {
+    font-family: "Lilita One", cursive;
+}
+
+.font-handwriting {
+    font-family: "Caveat", cursive;
+}
+
+/* Spotify embed container */
+.spotify-embed {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom scrollbar for the wall */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 158, 170, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 158, 170, 0.8);
+}
+
+/* Song search results styling */
+.song-result {
+    @apply flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-all;
+    @apply hover:bg-green-50 hover:scale-[1.02];
+    @apply border border-transparent hover:border-green-200;
+}
+
+.song-result.selected {
+    @apply bg-green-100 border-green-300;
+}
+
+/* Color variants for post-it notes */
+.postit-pink {
+    background: linear-gradient(135deg, #fff0f3 0%, #ffe0e6 100%);
+    border-color: #ffc2cc;
+}
+
+.postit-yellow {
+    background: linear-gradient(135deg, #fffef0 0%, #fef9c3 100%);
+    border-color: #fde68a;
+}
+
+.postit-lavender {
+    background: linear-gradient(135deg, #f5f0ff 0%, #ede5ff 100%);
+    border-color: #d8b4fe;
+}
