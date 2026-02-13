@@ -1,14 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { PostItNote } from "./PostItNote";
 import { Sparkle } from "./Sparkle";
 import { Heart, ArrowRight } from "lucide-react";
 
-// Floating heart component for title decoration
-function FloatingHeart({ 
+// Floating heart component for title decoration - memoized for perf
+const FloatingHeart = memo(function FloatingHeart({ 
   delay = 0, 
   x = 0, 
   y = 0, 
@@ -24,7 +24,7 @@ function FloatingHeart({
   return (
     <motion.div
       className="absolute pointer-events-none"
-      style={{ left: x, top: y }}
+      style={{ left: x, top: y, willChange: "transform" }}
       initial={{ opacity: 0, scale: 0 }}
       animate={{ 
         opacity: [0, 1, 1, 1],
@@ -33,9 +33,9 @@ function FloatingHeart({
       }}
       transition={{
         delay: delay + 0.8,
-        duration: 2,
+        duration: 3,
         repeat: Infinity,
-        repeatDelay: 0.5,
+        repeatDelay: 2,
         ease: "easeInOut",
       }}
     >
@@ -47,7 +47,7 @@ function FloatingHeart({
       />
     </motion.div>
   );
-}
+});
 import { PostItData } from "@/lib/types";
 import { Ka21nanLogo } from "./Ka21nanLogo";
 
@@ -109,8 +109,8 @@ export function LandingPage({
         <div className="absolute top-[30%] right-[8%] w-3 h-3 rounded-full bg-rose-300/60" />
       </div>
 
-      {/* Background Message Strips - Blurred */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden blur-sm">
+      {/* Background Message Strips - Reduced opacity, no blur for better perf */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
         {displayMessages.map((msg, i) => {
           const randomX = ((i * 18) % 80) + 10;
           const randomY = ((i * 15) % 80) + 10;
@@ -169,7 +169,7 @@ export function LandingPage({
             initial={{ opacity: 0, scale: 3, y: -50 }}
             animate={{ 
               opacity: 1, 
-              scale: [1, 1, 1.02, 1, 1.02, 1], 
+              scale: [1, 1.02, 1], 
               y: 0, 
               rotate: [-2, 2, -2] 
             }}
@@ -179,14 +179,12 @@ export function LandingPage({
                 duration: 0.6, 
                 type: "spring", 
                 bounce: 0.3,
-                // After initial animation, start pulsating
-                times: [0, 0.5, 0.6, 0.7, 0.8, 1],
                 repeat: Infinity,
-                repeatDelay: 0.5,
+                repeatDelay: 3,
               },
               y: { duration: 0.6, type: "spring", bounce: 0.4 },
               rotate: {
-                duration: 4,
+                duration: 6,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: 0.8,
@@ -200,7 +198,7 @@ export function LandingPage({
             initial={{ opacity: 0, scale: 3 }}
             animate={{ 
               opacity: 1, 
-              scale: [1, 1, 1.02, 1, 1.02, 1], 
+              scale: [1, 1.02, 1], 
               rotate: [2, -2, 2] 
             }}
             transition={{
@@ -210,12 +208,11 @@ export function LandingPage({
                 type: "spring", 
                 bounce: 0.3, 
                 delay: 0.2,
-                times: [0, 0.5, 0.6, 0.7, 0.8, 1],
                 repeat: Infinity,
-                repeatDelay: 0.5,
+                repeatDelay: 3,
               },
               rotate: {
-                duration: 4,
+                duration: 6,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: 1,
@@ -229,8 +226,9 @@ export function LandingPage({
                 scale: [1, 1.3, 1],
               }}
               transition={{
-                duration: 1.2,
+                duration: 1.5,
                 repeat: Infinity,
+                repeatDelay: 1,
                 ease: "easeInOut",
                 delay: 1.5,
               }}
@@ -244,7 +242,7 @@ export function LandingPage({
             initial={{ opacity: 0, scale: 3, y: 50 }}
             animate={{ 
               opacity: 1, 
-              scale: [1, 1, 1.02, 1, 1.02, 1], 
+              scale: [1, 1.02, 1], 
               y: 0, 
               rotate: [-1, 1, -1] 
             }}
@@ -255,13 +253,12 @@ export function LandingPage({
                 type: "spring", 
                 bounce: 0.3, 
                 delay: 0.4,
-                times: [0, 0.5, 0.6, 0.7, 0.8, 1],
                 repeat: Infinity,
-                repeatDelay: 0.5,
+                repeatDelay: 3,
               },
               y: { duration: 0.6, type: "spring", bounce: 0.4, delay: 0.4 },
               rotate: {
-                duration: 4,
+                duration: 6,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: 1.2,

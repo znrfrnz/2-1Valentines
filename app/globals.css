@@ -25,6 +25,13 @@ body {
     color: #333;
 }
 
+/* Fix iOS/mobile scroll jank with fixed backgrounds */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+    }
+}
+
 /* Halftone Pattern Overlay */
 .halftone-bg {
     background-color: transparent;
@@ -170,6 +177,21 @@ body {
         0 2px 6px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.8),
         inset 0 -2px 6px rgba(244, 114, 182, 0.1);
+    will-change: transform;
+}
+
+/* Simplified shadows on mobile for better performance */
+@media (max-width: 768px) {
+    .postit-pink,
+    .postit-yellow,
+    .postit-lavender,
+    .postit-blue,
+    .postit-green,
+    .postit-red {
+        box-shadow:
+            0 4px 12px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
 }
 
 .postit-yellow {

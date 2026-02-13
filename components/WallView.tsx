@@ -1,14 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 import { motion } from "framer-motion";
 import { PostItNote } from "./PostItNote";
 import { Sparkle } from "./Sparkle";
 import { ArrowLeft, Plus, Heart } from "lucide-react";
 import { PostItData } from "@/lib/types";
 
-// Floating heart component for title decoration (same as LandingPage)
-function FloatingHeart({
+// Floating heart component for title decoration (memoized for perf)
+const FloatingHeart = memo(function FloatingHeart({
   delay = 0,
   x = 0,
   y = 0,
@@ -24,7 +24,7 @@ function FloatingHeart({
   return (
     <motion.div
       className="absolute pointer-events-none"
-      style={{ left: x, top: y }}
+      style={{ left: x, top: y, willChange: "transform" }}
       initial={{ opacity: 0, scale: 0 }}
       animate={{
         opacity: [0, 1, 1, 1],
@@ -33,9 +33,9 @@ function FloatingHeart({
       }}
       transition={{
         delay: delay + 0.8,
-        duration: 2,
+        duration: 3,
         repeat: Infinity,
-        repeatDelay: 0.5,
+        repeatDelay: 2,
         ease: "easeInOut",
       }}
     >
@@ -47,7 +47,7 @@ function FloatingHeart({
       />
     </motion.div>
   );
-}
+});
 
 interface WallViewProps {
   messages: PostItData[];
@@ -142,7 +142,7 @@ export function WallView({
             initial={{ opacity: 0, scale: 3, y: -50 }}
             animate={{
               opacity: 1,
-              scale: [1, 1, 1.02, 1, 1.02, 1],
+              scale: [1, 1.02, 1],
               y: 0,
               rotate: [-2, 2, -2],
             }}
@@ -152,13 +152,12 @@ export function WallView({
                 duration: 0.6,
                 type: "spring",
                 bounce: 0.3,
-                times: [0, 0.5, 0.6, 0.7, 0.8, 1],
                 repeat: Infinity,
-                repeatDelay: 0.5,
+                repeatDelay: 3,
               },
               y: { duration: 0.6, type: "spring", bounce: 0.4 },
               rotate: {
-                duration: 4,
+                duration: 6,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: 0.8,
@@ -172,7 +171,7 @@ export function WallView({
             initial={{ opacity: 0, scale: 3, y: 50 }}
             animate={{
               opacity: 1,
-              scale: [1, 1, 1.02, 1, 1.02, 1],
+              scale: [1, 1.02, 1],
               y: 0,
               rotate: [2, -2, 2],
             }}
@@ -183,13 +182,12 @@ export function WallView({
                 type: "spring",
                 bounce: 0.3,
                 delay: 0.2,
-                times: [0, 0.5, 0.6, 0.7, 0.8, 1],
                 repeat: Infinity,
-                repeatDelay: 0.5,
+                repeatDelay: 3,
               },
               y: { duration: 0.6, type: "spring", bounce: 0.4, delay: 0.2 },
               rotate: {
-                duration: 4,
+                duration: 6,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: 1,
@@ -203,8 +201,9 @@ export function WallView({
                 scale: [1, 1.3, 1],
               }}
               transition={{
-                duration: 1.2,
+                duration: 1.5,
                 repeat: Infinity,
+                repeatDelay: 1,
                 ease: "easeInOut",
                 delay: 1.5,
               }}

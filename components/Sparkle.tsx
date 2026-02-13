@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 import { motion } from "framer-motion";
 
 interface SparkleProps {
@@ -18,7 +18,7 @@ const colors: Record<string, string> = {
   blue: "#7DD3FC",
 };
 
-export function Sparkle({
+export const Sparkle = memo(function Sparkle({
   color = "white",
   size = 24,
   className = "",
@@ -32,6 +32,7 @@ export function Sparkle({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={`absolute ${className}`}
+      style={{ willChange: "transform" }}
       initial={{ scale: 0, opacity: 0 }}
       animate={{
         scale: [1, 0.8, 1],
@@ -39,8 +40,9 @@ export function Sparkle({
         rotate: [0, 15, -15, 0],
       }}
       transition={{
-        duration: 3,
+        duration: 4,
         repeat: Infinity,
+        repeatDelay: 1.5,
         delay: delay,
         ease: "easeInOut",
       }}
@@ -53,4 +55,4 @@ export function Sparkle({
       />
     </motion.svg>
   );
-}
+});

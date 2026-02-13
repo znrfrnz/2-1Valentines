@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PostItData } from "@/lib/types";
 import { SpotifyMiniPlayer } from "./SpotifyMiniPlayer";
@@ -14,7 +14,7 @@ export interface PostItNoteProps extends Omit<PostItData, "createdAt"> {
   isDeleting?: boolean;
 }
 
-export function PostItNote({
+export const PostItNote = memo(function PostItNote({
   message,
   from,
   to,
@@ -165,6 +165,7 @@ export function PostItNote({
         rotate: rotation,
       }}
       whileHover={{ scale: scale * 1.05, rotate: rotation, zIndex: 50 }}
+      style={{ willChange: "transform, opacity" }}
       className={`relative w-full max-w-[320px] transform-gpu rounded-2xl ${theme.card} group overflow-hidden`}
     >
       {/* ── Glossy Overlay ────────────────────────────── */}
@@ -346,4 +347,4 @@ export function PostItNote({
       </div>
     </motion.div>
   );
-}
+});

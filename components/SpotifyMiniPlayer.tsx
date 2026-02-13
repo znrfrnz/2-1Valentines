@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 
 interface SpotifyMiniPlayerProps {
   trackId: string;
@@ -8,7 +8,7 @@ interface SpotifyMiniPlayerProps {
   artistName: string;
 }
 
-export function SpotifyMiniPlayer({
+export const SpotifyMiniPlayer = memo(function SpotifyMiniPlayer({
   trackId,
   trackName,
   artistName,
@@ -29,4 +29,4 @@ export function SpotifyMiniPlayer({
       />
     </div>
   );
-}
+});
