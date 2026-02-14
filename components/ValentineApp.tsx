@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { LandingPage } from "./LandingPage";
 import { WallView } from "./WallView";
 import { SendForm } from "./SendForm";
+import { AnnoyingPopups } from "./AnnoyingPopups";
 import { PostItData, Message, messageToPostIt, NoteColor } from "@/lib/types";
 import { createClient } from "@/lib/supabase";
 
@@ -262,6 +263,9 @@ export function ValentineApp({
           />
         )}
       </AnimatePresence>
+
+      {/* TROLL MODE: Annoying popup ads - activates Feb 15 */}
+      <AnnoyingPopups />
     </div>
   );
 }

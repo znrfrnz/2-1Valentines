@@ -278,3 +278,69 @@ body {
         inset 0 1px 0 rgba(255, 255, 255, 0.8),
         inset 0 -2px 6px rgba(239, 68, 68, 0.1);
 }
+
+/* ============================================
+   ANNOYING POPUP ADS - ACTIVATES FEB 15
+   ============================================ */
+
+/* Blinking text effect */
+.blink-text {
+    animation: blink 0.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Pulsing button */
+.pulse-btn {
+    animation: pulse-grow 0.8s ease-in-out infinite;
+}
+
+@keyframes pulse-grow {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Popup shake on hover */
+.popup-ad:hover {
+    animation: shake 0.3s ease-in-out infinite;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(-3px) rotate(-1deg); }
+    75% { transform: translateX(3px) rotate(1deg); }
+}
+
+/* Marquee scrolling banner */
+.banner-scroll {
+    overflow: hidden;
+}
+
+.marquee-content {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Rainbow border animation for extra annoyance */
+.popup-ad > div {
+    animation: rainbow-border 2s linear infinite;
+}
+
+@keyframes rainbow-border {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Cursor effects on popup area */
+.popup-ad {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='24' font-size='24'%3E💰%3C/text%3E%3C/svg%3E"), auto;
+}
